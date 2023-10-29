@@ -22,6 +22,22 @@ news.css('a.text__text__1FZLe::text').get()
 news.css('a.text__text__1FZLe::text').getall()
 news.css('a.text__text__1FZLe').attrib['href']
 ```
+Another example:
+```
+for news in response.css('div.media-story-card__body__3tRWy').getall():
+    print(news)
+    print("------------------\n")
+```
+You can also open the url directly (no need to use fectch)
+```
+scrapy shell https://docs.scrapy.org/en/latest/_static/selectors-sample1.html
+response.xpath("//title/text()")
+response.css("title::text").get()
+```
+
+# Implement the parse() function
+Find `reuters.py` in `scraper/scraper/spiders/` directory and implement the parse function
+to loop though the data. See current implementation for example.
 
 # Run the full web page crawl
 
@@ -46,5 +62,10 @@ scrapy crawl reuters -O output.csv
 
 # More tips and tricks
 
-You may find [this](https://www.youtube.com/watch?v=s4jtkzHhLzY) Youtube video for more tips and tricks.
+* Scrapy documentation is pretty good, you can read it [here](https://docs.scrapy.org/en/latest/index.html).
+* You may find [this](https://www.youtube.com/watch?v=s4jtkzHhLzY) YouTube video for more tips and tricks.
 For example, how to paginate but using the `response.follow()`
+* Try scraping these sites
+  * https://docs.scrapy.org/en/latest/_static/selectors-sample1.html
+  * http://quotes.toscrape.com/ and related https://github.com/scrapy/quotesbot has good examples.
+
