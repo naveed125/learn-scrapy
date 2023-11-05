@@ -3,3 +3,4 @@ venv/
 .idea/
 output.json
 output.csv
+scraper/scraper/__pycache__/

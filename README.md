@@ -31,8 +31,10 @@ for news in response.css('div.media-story-card__body__3tRWy').getall():
 You can also open the url directly (no need to use fectch)
 ```
 scrapy shell https://docs.scrapy.org/en/latest/_static/selectors-sample1.html
+response.xpath("/html/head/title/text()").get()
 response.xpath("//title/text()")
 response.css("title::text").get()
+response.xpath("//img/@src").extract()
 ```
 
 # Implement the parse() function

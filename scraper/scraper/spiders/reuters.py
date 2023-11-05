@@ -1,22 +1,20 @@
 import scrapy
-
+from scrapy.linkextractors import LinkExtractor
 
 class ReutersSpider(scrapy.Spider):
     name = "reuters"
     allowed_domains = ["reuters.com"]
-    start_urls = ["https://reuters.com"]
+    start_urls = ["https://www.reuters.com/site-search/?query=solid+state+batteries"]
 
     def parse(self, response) -> None:
-        for news in response.css('div.media-story-card__body__3tRWy'):
 
-            title = news.css('a.text__text__1FZLe::text').get()
-            url = news.css('a.text__text__1FZLe').attrib['href']
+        link_extractor = LinkExtractor()
+        links = link_extractor.extract_links(response)
 
-            if url == '/world/':
-                continue
+        for link in link_extractor.extract_links(response):
 
             yield {
-                'title': title,
-                'url': url
+                'text': link.text,
+                'url': link.url
             }
 
